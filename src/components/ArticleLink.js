@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const NavLink = React.createClass({
+const ArticleLink = React.createClass({
   render: function () {
     return (
       <div>
-        <Link to={this.props.topic}>{this.props.topic}</Link>
+        <Link to={`articles/${this.props.id}`}>{this.props.title}</Link>
       </div>
     );
   }
 });
 
-export default NavLink;
+export default ArticleLink;

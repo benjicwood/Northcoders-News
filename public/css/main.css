@@ -1,4 +1,12 @@
-.ourNavBar li {
+.ourNavBar li, .detail-list li{
     display: inline-block;
     margin: 10px;
+}
+
+.detail-list li{
+    display: inline-block;
+    margin: 3px;
+}
+.detail-list{
+  margin-top:5px;
 }

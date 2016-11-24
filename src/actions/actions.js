@@ -9,7 +9,6 @@ export function fetchArticles () {
     request
       .get(`${ROOT}/articles`)
       .end((err, res) => {
-        console.log(res.body)
         if (err) dispatch(articlesError(err));
         else dispatch(articlesSuccess(res.body));
       });

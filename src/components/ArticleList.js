@@ -12,16 +12,16 @@ const ArticleList = React.createClass({
     if (!this.props.articles) {
       return (
         <div>Loading...</div>
-      )
+      );
     } else {
     return (
       <div id='ArticleList'>
         {this.props.articles.map(function (article, i) {
-          return <ArticleCard title={article.title} votes={article.votes} key={i} />;
+          return <ArticleCard title={article.title} votes={article.votes} belongs_to={article.belongs_to} id={article._id} key={i} />;
         })}
       </div>
     );
-  };
+   };
   }
 });
 
@@ -35,7 +35,7 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch, props) {
   return {
     fetchArticles: () => {
-      dispatch(actions.fetchArticles(props.params.topic));
+      dispatch(actions.fetchArticles(props.params.article));
     }
   };
 }
