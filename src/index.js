@@ -9,13 +9,15 @@ import createLogger from 'redux-logger';
 import App from './components/App';
 import ArticleList from './components/ArticleList';
 import reducer from './reducer/reducer';
+import Topics from './components/Topics';
 
 const store = createStore(reducer, applyMiddleware(thunk, createLogger()));
 
 ReactDOM.render(<Provider store={store}>
                   <Router history={browserHistory}>
                     <Route path='/' component={App}>
-                      <IndexRoute component={ArticleList}/>
+                    <IndexRoute component={ArticleList} />
+                      <Route path='/:topic' component={Topics} />
                     </Route>
                   </Router>
                 </Provider>, document.getElementById('app'));
