@@ -15,39 +15,6 @@ export function fetchArticles () {
   };
 }
 
-// export function fetchArticlesByTopic (param) {
-//   return (dispatch) => {
-//     dispatch(topicArticlesRequest());
-//     request
-//       .get(`${ROOT}/topics` + '/' + param + '/articles')
-//       .end((err, res) => {
-//         console.log(res.body)
-//         if (err) dispatch(topicArticlesError(err));
-//         else dispatch(topicArticlesSuccess(res.body));
-//       });
-//   };
-// }
-
-// export function topicArticlesRequest () {
-//   return {
-//     type: types.FETCH_TOPIC_ARTICLES_REQUEST
-//   };
-// }
-//
-// export function topicArticlesSuccess (data) {
-//   return {
-//     type: types.FETCH_TOPIC_ARTICLES_SUCCESS,
-//     data: data
-//   };
-// }
-//
-// export function topicArticlesError (err) {
-//   return {
-//     types: types.FETCH_TOPIC_ARTICLES_ERROR,
-//     error: err
-//   };
-// }
-
 export function fetchTopics () {
   return (dispatch) => {
     dispatch(topicsRequest());
