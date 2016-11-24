@@ -33,6 +33,19 @@ function reducer (prevState = initialState, action) {
     newState.error = action.error;
     newState.loading = false;
   }
+
+  // if (action.type === types.FETCH_TOPIC_ARTICLES_SUCCESS) {
+  //   newState.loading = false;
+  //   newState.selectedTopic = action.data;
+  // }
+  // if (action.type === types.FETCH_TOPIC_ARTICLES_REQUEST) {
+  //   newState.loading = true;
+  // }
+  // if (action.type === types.FETCH_TOPIC_ARTICLES_ERROR) {
+  //   newState.error = action.error;
+  //   newState.loading = false;
+  // }
+
   return newState;
 }
 

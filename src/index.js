@@ -16,7 +16,7 @@ const store = createStore(reducer, applyMiddleware(thunk, createLogger()));
 ReactDOM.render(<Provider store={store}>
                   <Router history={browserHistory}>
                     <Route path='/' component={App}>
-                    <IndexRoute component={ArticleList} />
+                      <IndexRoute component={ArticleList} />
                       <Route path='/:topic' component={Topics} />
                     </Route>
                   </Router>

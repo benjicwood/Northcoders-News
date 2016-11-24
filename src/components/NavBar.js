@@ -19,7 +19,7 @@ const NavBar = React.createClass({
           <ul>
             <li ><Link to='/' >All Articles< /Link></li>
         {this.props.topics.map((topic, i) => {
-          return <li key={i}><NavLink topic={topic.title} /></li>;
+          return <li key={i}><NavLink topic={topic.slug} /></li>;
         })
       }
           </ul>
