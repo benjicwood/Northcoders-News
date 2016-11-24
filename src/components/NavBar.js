@@ -14,13 +14,12 @@ const NavBar = React.createClass({
         <div>Loading Topics...</div>
     );
     } else {
-      console.log('rendering nav bar');
       return (
-        <div className='navbar clearfix'>
+        <div className='navbar clearfix ourNavBar'>
           <ul>
-            <li><Link to='/' >All Articles< /Link></li>
+            <li ><Link to='/' >All Articles< /Link></li>
         {this.props.topics.map((topic, i) => {
-          return <li key={i}><NavLink topic={topic} /></li>;
+          return <li key={i}><NavLink topic={topic.title} /></li>;
         })
       }
           </ul>

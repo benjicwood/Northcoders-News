@@ -16,7 +16,7 @@ export function fetchArticles () {
   };
 }
 
-export function fetchTopics () {
+export function fetchTopics (topic) {
   return (dispatch) => {
     dispatch(topicsRequest());
     request
