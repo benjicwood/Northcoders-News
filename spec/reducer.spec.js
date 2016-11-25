@@ -19,11 +19,11 @@ describe('reducer function', function () {
     var newState = reducer(initialState, myaction);
     expect(newState.loading).to.be.true;
   });
-  xit('it handles the fetchArticlesError correctly', function () {
+  it('it handles the fetchArticlesError correctly', function () {
     var myaction = actions.articlesError({"error": {"code": 400}});
     var initialState = { error: false };
     var newState = reducer(initialState, myaction);
-    expect(newState.error).to.be.true;
+    expect(newState.error).to.eql({"error": {"code": 400}});
   });
 
   it('handles action topicsSuccess correctly', function () {

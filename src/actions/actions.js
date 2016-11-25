@@ -27,6 +27,18 @@ export function fetchTopics () {
   };
 }
 
+export function fetchComments (id) {
+  return (dispatch) => {
+    dispatch(commentsRequest());
+    request
+    .get(`${ROOT}/articles` + '/' + id + '/comments')
+    .end((err, res) => {
+      if (err) dispatch(commentsError(err));
+      else dispatch(commentsSuccess(res.body));
+    });
+  };
+}
+
 export function articlesRequest () {
   return {
     type: types.FETCH_ARTICLES_REQUEST
@@ -42,7 +54,7 @@ export function articlesSuccess (data) {
 
 export function articlesError (err) {
   return {
-    types: types.FETCH_ARTICLES_ERROR,
+    type: types.FETCH_ARTICLES_ERROR,
     error: err
   };
 }
@@ -70,7 +82,27 @@ export function topicsSuccess (data) {
 
 export function topicsError (err) {
   return {
-    types: types.FETCH_TOPICS_ERROR,
+    type: types.FETCH_TOPICS_ERROR,
+    error: err
+  };
+}
+
+export function commentsRequest () {
+  return {
+    type: types.FETCH_COMMENTS_REQUEST
+  };
+}
+
+export function commentsSuccess (article_id) {
+  return {
+    type: types.FETCH_COMMENTS_SUCCESS,
+    article_id: article_id
+  };
+}
+
+export function commentsError (err) {
+  return {
+    type: types.FETCH_COMMENTS_ERROR,
     error: err
   };
 }

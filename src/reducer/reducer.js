@@ -5,6 +5,7 @@ const initialState = {
   loading: false,
   error: null,
   topics: [],
+  comments: [],
   selectedTopic: null
 };
 
@@ -18,6 +19,18 @@ function reducer (prevState = initialState, action) {
     newState.loading = true;
   }
   if (action.type === types.FETCH_ARTICLES_ERROR) {
+    newState.error = action.error;
+    newState.loading = false;
+  }
+
+  if (action.type === types.FETCH_COMMENTS_SUCCESS) {
+    newState.loading = false;
+    newState.comments = action.data.comments;
+  }
+  if (action.type === types.FETCH_COMMENTS_REQUEST) {
+    newState.loading = true;
+  }
+  if (action.type === types.FETCH_COMMENTS_ERROR) {
     newState.error = action.error;
     newState.loading = false;
   }
