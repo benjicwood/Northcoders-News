@@ -15,7 +15,10 @@ const ArticleCard = function (props) {
         </div>
         <div className='media-content'>
           <div className='content'>
-            <h3 className='title is-3'><ArticleLink id={props.id} title={props.title} /></h3>
+            <h3 className='title is-3'><ArticleLink id={props.id} title={props.title} commentsNumber={props.comments} /></h3>
+          </div>
+          <div className='comment-number'>
+            <p>{props.comments} comments</p>
           </div>
         </div>
       </article>

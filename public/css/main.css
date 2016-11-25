@@ -10,3 +10,11 @@
 .detail-list{
   margin-top:5px;
 }
+.our-box{
+  margin-bottom: 10px;
+}
+p.lead {
+  font-weight:bold;
+  font-size: 10px;
+  margin: 5px 0;
+}

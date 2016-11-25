@@ -31,8 +31,10 @@ export function fetchComments (id) {
   return (dispatch) => {
     dispatch(commentsRequest());
     request
-    .get(`${ROOT}/articles` + '/' + id + '/comments')
+    .get(`${ROOT}/articles/${id}`)
     .end((err, res) => {
+      console.log('rsponse');
+      console.log(res.body);
       if (err) dispatch(commentsError(err));
       else dispatch(commentsSuccess(res.body));
     });
@@ -60,11 +62,11 @@ export function articlesError (err) {
 }
 
   export function addComment (body, article_id) {
-  return {
-    type: types.ADD_COMMENT,
-    body: body,
-    article_id: article_id
-  };
+    return {
+      type: types.ADD_COMMENT,
+      body: body,
+      article_id: article_id
+    };
 }
 
 export function topicsRequest () {
@@ -93,10 +95,10 @@ export function commentsRequest () {
   };
 }
 
-export function commentsSuccess (article_id) {
+export function commentsSuccess (data) {
   return {
     type: types.FETCH_COMMENTS_SUCCESS,
-    article_id: article_id
+    data: data
   };
 }
 
