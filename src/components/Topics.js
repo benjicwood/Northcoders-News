@@ -14,7 +14,7 @@ const Topics = React.createClass({
       return (
         <div>
           {this.props.topicArticles.map(function (article, i) {
-            return <ArticleCard title={article.title} votes={article.votes} belongs_to={article.belongs_to} id={article._id} key={i}n />;
+            return <ArticleCard title={article.title} votes={article.votes} comments={article.comments} belongs_to={article.belongs_to} id={article._id} key={i} />;
           })
           }
         </div>
