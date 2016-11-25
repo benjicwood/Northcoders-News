@@ -3,6 +3,8 @@ import request from 'superagent';
 
 import { ROOT } from '../../config';
 
+// ARTICLES ACTIONS
+
 export function fetchArticles () {
   return (dispatch) => {
     dispatch(articlesRequest());
@@ -12,32 +14,6 @@ export function fetchArticles () {
         if (err) dispatch(articlesError(err));
         else dispatch(articlesSuccess(res.body));
       });
-  };
-}
-
-export function fetchTopics () {
-  return (dispatch) => {
-    dispatch(topicsRequest());
-    request
-    .get(`${ROOT}/topics`)
-    .end((err, res) => {
-      if (err) dispatch(topicsError(err));
-      else dispatch(topicsSuccess(res.body));
-    });
-  };
-}
-
-export function fetchComments (id) {
-  return (dispatch) => {
-    dispatch(commentsRequest());
-    request
-    .get(`${ROOT}/articles/${id}`)
-    .end((err, res) => {
-      console.log('rsponse');
-      console.log(res.body);
-      if (err) dispatch(commentsError(err));
-      else dispatch(commentsSuccess(res.body));
-    });
   };
 }
 
@@ -61,12 +37,18 @@ export function articlesError (err) {
   };
 }
 
-  export function addComment (body, article_id) {
-    return {
-      type: types.ADD_COMMENT,
-      body: body,
-      article_id: article_id
-    };
+// TOPICS ACTIONS
+
+export function fetchTopics () {
+  return (dispatch) => {
+    dispatch(topicsRequest());
+    request
+    .get(`${ROOT}/topics`)
+    .end((err, res) => {
+      if (err) dispatch(topicsError(err));
+      else dispatch(topicsSuccess(res.body));
+    });
+  };
 }
 
 export function topicsRequest () {
@@ -86,6 +68,22 @@ export function topicsError (err) {
   return {
     type: types.FETCH_TOPICS_ERROR,
     error: err
+  };
+}
+
+// COMMENTS ACTIONS
+
+export function fetchComments (id) {
+  return (dispatch) => {
+    dispatch(commentsRequest());
+    request
+    .get(`${ROOT}/articles/${id}`)
+    .end((err, res) => {
+      console.log('rsponse');
+      console.log(res.body);
+      if (err) dispatch(commentsError(err));
+      else dispatch(commentsSuccess(res.body));
+    });
   };
 }
 
@@ -109,19 +107,62 @@ export function commentsError (err) {
   };
 }
 
-export function upvoteComment (comment_id) {
+// POST COMMENT ACTIONS
+
+export function addComment (body, article_id) {
   return {
-    type: types.UPVOTE_COMMENT,
+    type: types.ADD_COMMENT,
+    body: body,
+    article_id: article_id
+  };
+}
+
+export function deleteComment (comment_id) {
+  return {
+    type: types.DELETE_COMMENT,
     comment_id: comment_id
   };
 }
 
-export function downvoteComment (comment_id) {
+// VOTE CHANGE ACTIONS
+
+export function upvoteComment (id) {
   return {
-    type: types.DOWNVOTE_COMMENT,
-    comment_id: comment_id
+    type: types.UPVOTE_COMMENT,
+    id: id
   };
 }
+
+export function downvoteComment (id) {
+  return {
+    type: types.DOWNVOTE_COMMENT,
+    id: id
+  };
+}
+
+// PUT UPVOTE COMMENT ACTIONS
+
+export function upvoteCommentRequest (data) {
+  return {
+    type: types.UPVOTE_COMMENT_REQUEST,
+    data: data
+  }
+}
+
+export function upvoteCommentSuccess () {
+  return {
+    type: types.UPVOTE_COMMENT_SUCCESS
+  };
+}
+
+export function upvoteCommentError (error) {
+  return {
+    type: types.UPVOTE_COMMENT_ERROR,
+    error: error
+  }
+}
+
+// PUT DOWNVOTE COMMENT ACTIONS
 
 export function upvoteArticle (article_id) {
   return {
@@ -134,12 +175,5 @@ export function downvoteArticle (article_id) {
   return {
     type: types.DOWNVOTE_ARTICLE,
     article_id
-  };
-}
-
-export function deleteComment (comment_id) {
-  return {
-    type: types.DELETE_COMMENT,
-    comment_id: comment_id
   };
 }

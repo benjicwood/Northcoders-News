@@ -23,6 +23,19 @@ function reducer (prevState = initialState, action) {
     newState.loading = false;
   }
 
+  if (action.type === types.UPVOTE_COMMENT) {
+    var index = newState.comments.findIndex(function (comment) {
+      return comment._id === action.id;
+    });
+    newState.comments = newState.comments.slice();
+    newState.comments[index].votes += 1;
+
+  }
+
+  if (action.type === types.DOWNVOTE_COMMENT) {
+    newState.comments.votes -1;
+  }
+
   if (action.type === types.FETCH_COMMENTS_SUCCESS) {
     newState.loading = false;
     newState.comments = action.data.comments;

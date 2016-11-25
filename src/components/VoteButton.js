@@ -3,7 +3,7 @@ import React from 'react';
 const VoteButton = React.createClass({
   render: function () {
     return (
-      <a><i className={this.props.type}></i></a>
+      <a><i className={this.props.type} onClick={this.props.handleClick}></i></a>
     );
   }
 });

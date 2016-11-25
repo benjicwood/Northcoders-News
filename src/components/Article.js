@@ -5,11 +5,12 @@ import CommentCard from './CommentCard';
 
 const Article = React.createClass({
   componentWillMount: function () {
-    console.log('*************', this.props.currentArticle);
     if (!this.props.currentArticle) { this.props.fetchArticles(); }
     this.props.fetchComments();
   },
   render: function () {
+    console.log('****************');
+    console.log(this.props.comments);
     if(!this.props.currentArticle) {
       return (
           <div>
@@ -37,7 +38,7 @@ const Article = React.createClass({
         <div className='box'>
         <ul>
           {this.props.comments.map((comment, i) => {
-            return <li key={i}><CommentCard body={comment.body} author={comment.created_by} votes={comment.votes} /></li>;
+            return <li key={i}><CommentCard body={comment.body} author={comment.created_by} id={comment._id} votes={comment.votes} /></li>;
           })}
         </ul>
         </div>

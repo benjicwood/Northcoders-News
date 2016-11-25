@@ -39,4 +39,11 @@ describe('reducer function', function () {
     var newState = reducer(initialState, myaction);
     expect(newState.loading).to.be.true;
   });
+  it('handles actions upvoteComment correctly', function () {
+    var initialState = { comments: [{body: 'body', votes: 5, _id: 0}] };
+    var myaction = actions.upvoteComment(0);
+    var newState = reducer(initialState, myaction);
+    console.log(newState.comments);
+    expect(newState.comments[0].votes).to.eql(6);
+  });
 });
