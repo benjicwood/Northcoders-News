@@ -1,11 +1,11 @@
 import React from 'react';
 
-const VoteButton = React.createClass({
+const VoteButtonUp = React.createClass({
   render: function () {
     return (
-      <a><i className={this.props.type} onClick={this.props.handleClick}></i></a>
+      <a><i className={this.props.type} onClick={this.props.handleUpClick}></i></a>
     );
   }
 });
 
-export default VoteButton;
+export default VoteButtonUp;

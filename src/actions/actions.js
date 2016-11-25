@@ -3,6 +3,20 @@ import request from 'superagent';
 
 import { ROOT } from '../../config';
 
+
+
+// export function updateCommentVotes (id, vote) {
+//   return (dispatch) => {
+//     request
+//     .put(`${ROOT}` id, vote)
+//     .end((err, res) => {
+//       if (err) dispatch(commentUpdateError(err));
+//       else dispatch(commentUpdateSuccess(id, vote));
+//     });
+//   };
+// }
+
+
 // ARTICLES ACTIONS
 
 export function fetchArticles () {
@@ -107,6 +121,8 @@ export function commentsError (err) {
   };
 }
 
+
+
 // POST COMMENT ACTIONS
 
 export function addComment (body, article_id) {
@@ -142,27 +158,21 @@ export function downvoteComment (id) {
 
 // PUT UPVOTE COMMENT ACTIONS
 
-export function upvoteCommentRequest (data) {
+export function commentUpdateSuccess (response) {
   return {
-    type: types.UPVOTE_COMMENT_REQUEST,
-    data: data
-  }
-}
-
-export function upvoteCommentSuccess () {
-  return {
-    type: types.UPVOTE_COMMENT_SUCCESS
+    type: types.COMMENT_UPDATE_SUCCESS,
+    response: response
   };
 }
 
-export function upvoteCommentError (error) {
+export function commentUpdateError (error) {
   return {
-    type: types.UPVOTE_COMMENT_ERROR,
+    type: types.COMMENT_UPDATE_ERROR,
     error: error
   }
 }
 
-// PUT DOWNVOTE COMMENT ACTIONS
+// PUT DOWNVOTE Article ACTIONS
 
 export function upvoteArticle (article_id) {
   return {

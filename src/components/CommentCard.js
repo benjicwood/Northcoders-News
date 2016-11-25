@@ -1,5 +1,6 @@
 import React from 'react';
-import VoteButton from './VoteButton';
+import VoteButtonUp from './VoteButton';
+import VoteButtonDown from './VoteButtonDown';
 import {connect} from 'react-redux';
 import * as actions from '../actions/actions';
 
@@ -12,9 +13,9 @@ const CommentCard = React.createClass({
         <article className='media'>
           <div className='media-left'>
           <ul className='detail-list'>
-            <li><VoteButton type='fa fa-thumbs-o-up' handleClick={this.handleClick} /></li>
+            <li><VoteButtonUp type='fa fa-thumbs-o-up' handleUpClick={this.handleUpClick} /></li>
             <li>{this.props.votes}</li>
-            <li><VoteButton type='fa fa-thumbs-o-down' /></li>
+            <li><VoteButtonDown type='fa fa-thumbs-o-down' handleDownClick={this.handleDownClick} /></li>
           </ul>
           </div>
           <div className='media-content'>
@@ -25,17 +26,22 @@ const CommentCard = React.createClass({
       </div>
     );
   },
-  handleClick (event) {
-    console.log(event);
-    console.log('click')
+  handleUpClick (event) {
     this.props.upvoteComment(this.props.id);
+  },
+  handleDownClick (event) {
+    this.props.downvoteComment(this.props.id);
   }
+
 });
 
 function mapDispatchToProps (dispatch, props) {
   return {
     upvoteComment: () => {
       dispatch(actions.upvoteComment(props.id));
+    },
+    downvoteComment: () => {
+      dispatch(actions.downvoteComment(props.id));
     }
   };
 }

@@ -6,7 +6,7 @@ const initialState = {
   error: null,
   topics: [],
   comments: [],
-  selectedTopic: null
+  serverResponse: null
 };
 
 function reducer (prevState = initialState, action) {
@@ -29,11 +29,20 @@ function reducer (prevState = initialState, action) {
     });
     newState.comments = newState.comments.slice();
     newState.comments[index].votes += 1;
-
   }
 
   if (action.type === types.DOWNVOTE_COMMENT) {
-    newState.comments.votes -1;
+    index = newState.comments.findIndex(function (comment) {
+      return comment._id === action.id;
+    });
+    newState.comments = newState.comments.slice();
+    newState.comments[index].votes -= 1;
+  }
+  if (action.type === types.COMMENT_UPDATE_SUCCESS) {
+    newState.serverResponse = action.response;
+  }
+  if (action.type === types.COMMENT_UPDATE_ERROR) {
+    newState.error = action.error;
   }
 
   if (action.type === types.FETCH_COMMENTS_SUCCESS) {
