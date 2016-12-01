@@ -1,6 +1,7 @@
 .ourNavBar li, .detail-list li{
     display: inline-block;
     margin: 10px;
+    font-weight: bold;
 }
 
 .detail-list li{
@@ -17,4 +18,8 @@ p.lead {
   font-weight:bold;
   font-size: 10px;
   margin: 5px 0;
+}
+#thumbs {
+  color: black;
+  font-weight: bold;
 }

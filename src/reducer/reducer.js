@@ -68,6 +68,21 @@ function reducer (prevState = initialState, action) {
     newState.error = action.error;
     newState.loading = false;
   }
+  if (action.type === types.UPVOTE_ARTICLE) {
+    var arIndex = newState.articles.findIndex(function (article) {
+      return article._id === action.id;
+    });
+    newState.articles = newState.articles.slice();
+    newState.articles[arIndex].votes += 1;
+  }
+
+  if (action.type === types.DOWNVOTE_ARTICLE) {
+    arIndex = newState.articles.findIndex(function (article) {
+      return article._id === action.id;
+    });
+    newState.articles = newState.articles.slice();
+    newState.articles[arIndex].votes -= 1;
+  }
   return newState;
 }
 

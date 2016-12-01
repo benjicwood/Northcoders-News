@@ -9,8 +9,6 @@ const Article = React.createClass({
     this.props.fetchComments();
   },
   render: function () {
-    console.log('****************');
-    console.log(this.props.comments);
     if(!this.props.currentArticle) {
       return (
           <div>
@@ -25,7 +23,7 @@ const Article = React.createClass({
         <p>{this.props.currentArticle.body}</p>
         <p className='lead'>{this.props.currentArticle.comments} comments</p>
         <div className='box'>
-          Loading comments ...
+          <i className="fa fa-spinner" aria-hidden="true"></i>
         </div>
       </div>
     );
@@ -34,14 +32,13 @@ const Article = React.createClass({
       <div className='box'>
         <h3 className='title is-3'>{this.props.currentArticle.title}</h3>
         <p>{this.props.currentArticle.body}</p>
-        <p className='lead'>{this.props.currentArticle.comments} comments</p>
-        <div className='box'>
+          <p className='lead tag is-info'>{this.props.currentArticle.votes} upvotes</p>
+        <p className='lead tag is-info'>{this.props.currentArticle.comments} comments</p>
         <ul>
           {this.props.comments.map((comment, i) => {
             return <li key={i}><CommentCard body={comment.body} author={comment.created_by} id={comment._id} votes={comment.votes} /></li>;
           })}
         </ul>
-        </div>
       </div>
     );
     }

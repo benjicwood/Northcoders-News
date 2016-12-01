@@ -15,15 +15,17 @@ const NavBar = React.createClass({
     );
     } else {
       return (
-        <div className='navbar clearfix ourNavBar'>
-          <ul>
-            <li ><Link to='/' >All Articles< /Link></li>
+        <nav className="nav has-shadow">
+  <div className="container">
+    <div className="nav-left">
+      <a className="nav-item is-tab is-info"><Link to='/' >all articles < /Link></a>
         {this.props.topics.map((topic, i) => {
-          return <li key={i}><NavLink topic={topic.slug} /></li>;
+          return <a className="nav-item is-tab is-info" key={i}><NavLink topic={topic.slug} /></a>;
         })
       }
-          </ul>
-        </div>
+    </div>
+  </div>
+</nav>
     );
     }
   }

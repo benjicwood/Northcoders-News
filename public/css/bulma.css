@@ -57,6 +57,7 @@ html {
 
 *:before, *:after {
   box-sizing: inherit;
+  color: grey;
 }
 
 img,
@@ -106,7 +107,7 @@ th {
 }
 
 html {
-  background-color: whitesmoke;
+  background-color: #AEC6CF;
   font-size: 14px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -150,7 +151,7 @@ body {
 }
 
 a {
-  color: #00d1b2;
+  color: darkgrey;
   cursor: pointer;
   text-decoration: none;
   -webkit-transition: none 86ms ease-out;
@@ -607,11 +608,15 @@ table th {
 }
 
 .box {
-  background-color: white;
-  border-radius: 5px;
+  background-color: whitesmoke;
+  border-radius: 10px;
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
   display: block;
-  padding: 20px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+
 }
 
 .box:not(:last-child) {
@@ -1164,11 +1169,12 @@ a.box:active {
 }
 
 .content a:not(.button):visited {
-  color: #b86bff;
+  color: lightblue;
 }
 
 .content a:not(.button):hover {
-  border-bottom-color: #00d1b2;
+  border-bottom-color: darkblue;
+  font-size: 20px;
 }
 
 .content li + li {
@@ -2211,7 +2217,7 @@ a.box:active {
 .progress::-webkit-progress-bar {
   background-color: #dbdbdb;
 }
-
+.box
 .progress::-webkit-progress-value {
   background-color: #4a4a4a;
 }
@@ -2541,6 +2547,7 @@ a.box:active {
 
 .title.is-3 {
   font-size: 28px;
+  color: grey;
 }
 
 .title.is-3 code {
@@ -2910,10 +2917,11 @@ a.box:active {
   background-color: #00d1b2;
   color: white;
 }
-
+body
 .tag.is-info {
   background-color: #3273dc;
   color: white;
+  margin: 5px;
 }
 
 .tag.is-success {
@@ -4090,7 +4098,7 @@ a.nav-item.is-tab.is-active {
     border-top: 1px solid rgba(219, 219, 219, 0.5);
     padding: 10px;
   }
-  .nav-menu.is-active {
+  .nav-menu.is-info {
     display: block;
   }
 }
@@ -4162,7 +4170,7 @@ a.nav-item.is-tab.is-active {
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
-  background-color: white;
+  background-color: whitesmoke;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

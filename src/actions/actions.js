@@ -1,189 +1,195 @@
 import * as types from './types';
 import request from 'superagent';
-
 import { ROOT } from '../../config';
 
-
-
-// export function updateCommentVotes (id, vote) {
-//   return (dispatch) => {
-//     request
-//     .put(`${ROOT}` id, vote)
-//     .end((err, res) => {
-//       if (err) dispatch(commentUpdateError(err));
-//       else dispatch(commentUpdateSuccess(id, vote));
-//     });
-//   };
-// }
-
-
-// ARTICLES ACTIONS
+export function commentVote (id, vote) {
+ return (dispatch) => {
+   request
+     .put(`${ROOT}/comments/${id}?vote=${vote}`)
+     .end((err) => {
+       if (err) dispatch(commentUpdateError(err));
+       else dispatch(commentUpdateSuccess(id, vote));
+     });
+ };
+}
 
 export function fetchArticles () {
-  return (dispatch) => {
-    dispatch(articlesRequest());
-    request
-      .get(`${ROOT}/articles`)
-      .end((err, res) => {
-        if (err) dispatch(articlesError(err));
-        else dispatch(articlesSuccess(res.body));
-      });
-  };
+ return (dispatch) => {
+   dispatch(articlesRequest());
+   request
+     .get(`${ROOT}/articles`)
+     .end((err, res) => {
+       if (err) dispatch(articlesError(err));
+       else dispatch(articlesSuccess(res.body));
+     });
+ };
+}
+
+export function articleVote (id, vote) {
+ return (dispatch) => {
+   request
+     .put(`${ROOT}/articles/${id}?vote=${vote}`)
+     .end((err) => {
+       if (err) dispatch(articleVoteError(err));
+       else dispatch(articleVoteSuccess(id, vote));
+     });
+ };
+}
+
+export function fetchTopics () {
+ return (dispatch) => {
+   dispatch(topicsRequest());
+   request
+   .get(`${ROOT}/topics`)
+   .end((err, res) => {
+     if (err) dispatch(topicsError(err));
+     else dispatch(topicsSuccess(res.body));
+   });
+ };
+}
+
+export function fetchComments (id) {
+ return (dispatch) => {
+   dispatch(commentsRequest());
+   request
+   .get(`${ROOT}/articles/${id}`)
+   .end((err, res) => {
+     console.log('rsponse');
+     console.log(res.body);
+     if (err) dispatch(commentsError(err));
+     else dispatch(commentsSuccess(res.body));
+   });
+ };
 }
 
 export function articlesRequest () {
-  return {
-    type: types.FETCH_ARTICLES_REQUEST
-  };
+ return {
+   type: types.FETCH_ARTICLES_REQUEST
+ };
 }
 
 export function articlesSuccess (data) {
-  return {
-    type: types.FETCH_ARTICLES_SUCCESS,
-    data: data
-  };
+ return {
+   type: types.FETCH_ARTICLES_SUCCESS,
+   data: data
+ };
 }
 
 export function articlesError (err) {
-  return {
-    type: types.FETCH_ARTICLES_ERROR,
-    error: err
-  };
+ return {
+   type: types.FETCH_ARTICLES_ERROR,
+   error: err
+ };
 }
 
-// TOPICS ACTIONS
+export function articleVoteError (error) {
+ return {
+   type: types.ARTICLE_VOTE_ERROR,
+   error: error
+ };
+}
 
-export function fetchTopics () {
-  return (dispatch) => {
-    dispatch(topicsRequest());
-    request
-    .get(`${ROOT}/topics`)
-    .end((err, res) => {
-      if (err) dispatch(topicsError(err));
-      else dispatch(topicsSuccess(res.body));
-    });
-  };
+export function articleVoteSuccess (id, vote) {
+ return {
+   type: types.ARTICLE_VOTE_SUCCESS,
+   id: id,
+   vote: vote
+ };
+}
+
+export function upvoteArticle (id) {
+ return {
+   type: types.UPVOTE_ARTICLE,
+   id: id
+ };
+}
+
+export function downvoteArticle (id) {
+ return {
+   type: types.DOWNVOTE_ARTICLE,
+   id: id
+ };
 }
 
 export function topicsRequest () {
-  return {
-    type: types.FETCH_TOPICS_REQUEST
-  };
+ return {
+   type: types.FETCH_TOPICS_REQUEST
+ };
 }
 
 export function topicsSuccess (data) {
-  return {
-    type: types.FETCH_TOPICS_SUCCESS,
-    data: data
-  };
+ return {
+   type: types.FETCH_TOPICS_SUCCESS,
+   data: data
+ };
 }
 
 export function topicsError (err) {
-  return {
-    type: types.FETCH_TOPICS_ERROR,
-    error: err
-  };
-}
-
-// COMMENTS ACTIONS
-
-export function fetchComments (id) {
-  return (dispatch) => {
-    dispatch(commentsRequest());
-    request
-    .get(`${ROOT}/articles/${id}`)
-    .end((err, res) => {
-      console.log('rsponse');
-      console.log(res.body);
-      if (err) dispatch(commentsError(err));
-      else dispatch(commentsSuccess(res.body));
-    });
-  };
+ return {
+   type: types.FETCH_TOPICS_ERROR,
+   error: err
+ };
 }
 
 export function commentsRequest () {
-  return {
-    type: types.FETCH_COMMENTS_REQUEST
-  };
+ return {
+   type: types.FETCH_COMMENTS_REQUEST
+ };
 }
 
 export function commentsSuccess (data) {
-  return {
-    type: types.FETCH_COMMENTS_SUCCESS,
-    data: data
-  };
+ return {
+   type: types.FETCH_COMMENTS_SUCCESS,
+   data: data
+ };
 }
 
 export function commentsError (err) {
-  return {
-    type: types.FETCH_COMMENTS_ERROR,
-    error: err
-  };
+ return {
+   type: types.FETCH_COMMENTS_ERROR,
+   error: err
+ };
 }
 
-
-
-// POST COMMENT ACTIONS
-
-export function addComment (body, article_id) {
-  return {
-    type: types.ADD_COMMENT,
-    body: body,
-    article_id: article_id
-  };
+export function addComment (data) {
+ return {
+   type: types.ADD_COMMENT,
+   data: data
+ };
 }
 
 export function deleteComment (comment_id) {
-  return {
-    type: types.DELETE_COMMENT,
-    comment_id: comment_id
-  };
+ return {
+   type: types.DELETE_COMMENT,
+   comment_id: comment_id
+ };
 }
 
-// VOTE CHANGE ACTIONS
-
 export function upvoteComment (id) {
-  return {
-    type: types.UPVOTE_COMMENT,
-    id: id
-  };
+ return {
+   type: types.UPVOTE_COMMENT,
+   id: id
+ };
 }
 
 export function downvoteComment (id) {
-  return {
-    type: types.DOWNVOTE_COMMENT,
-    id: id
-  };
+ return {
+   type: types.DOWNVOTE_COMMENT,
+   id: id
+ };
 }
 
-// PUT UPVOTE COMMENT ACTIONS
-
-export function commentUpdateSuccess (response) {
-  return {
-    type: types.COMMENT_UPDATE_SUCCESS,
-    response: response
-  };
+export function commentUpdateSuccess (id, vote) {
+ return {
+   type: types.COMMENT_UPDATE_SUCCESS,
+   id: id,
+   vote: vote
+ };
 }
 
 export function commentUpdateError (error) {
-  return {
-    type: types.COMMENT_UPDATE_ERROR,
-    error: error
-  }
-}
-
-// PUT DOWNVOTE Article ACTIONS
-
-export function upvoteArticle (article_id) {
-  return {
-    type: types.UPVOTE_ARTICLE,
-    article_id
-  };
-}
-
-export function downvoteArticle (article_id) {
-  return {
-    type: types.DOWNVOTE_ARTICLE,
-    article_id
-  };
+ return {
+   type: types.COMMENT_UPDATE_ERROR,
+   error: error
+ };
 }

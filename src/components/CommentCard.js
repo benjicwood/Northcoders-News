@@ -1,5 +1,5 @@
 import React from 'react';
-import VoteButtonUp from './VoteButton';
+import VoteButtonUp from './VoteButtonUp';
 import VoteButtonDown from './VoteButtonDown';
 import {connect} from 'react-redux';
 import * as actions from '../actions/actions';
