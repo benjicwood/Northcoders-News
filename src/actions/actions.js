@@ -3,14 +3,14 @@ import request from 'superagent';
 import { ROOT } from '../../config';
 
 export function commentVote (id, vote) {
- return (dispatch) => {
-   request
-     .put(`${ROOT}/comments/${id}?vote=${vote}`)
-     .end((err) => {
-       if (err) dispatch(commentUpdateError(err));
-       else dispatch(commentUpdateSuccess(id, vote));
-     });
- };
+  return (dispatch) => {
+    request
+      .put(`${ROOT}/comments/${id}?vote=${vote}`)
+      .end((err) => {
+        if (err) dispatch(commentUpdateError(err));
+        else dispatch(commentUpdateSuccess(id, vote));
+      });
+  };
 }
 
 export function fetchArticles () {
@@ -178,6 +178,8 @@ export function downvoteComment (id) {
    id: id
  };
 }
+
+
 
 export function commentUpdateSuccess (id, vote) {
  return {

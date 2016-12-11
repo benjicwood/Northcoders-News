@@ -26,24 +26,34 @@ const CommentCard = React.createClass({
       </div>
     );
   },
-  handleUpClick (event) {
-    this.props.upvoteComment(this.props.id);
-  },
-  handleDownClick (event) {
-    this.props.downvoteComment(this.props.id);
-  }
+handleUpClick (event) {
+   this.props.upvoteComment();
+   this.props.commentVoteUp();
+ },
+ handleDownClick (event) {
+   this.props.downvoteComment();
+   this.props.commentVoteDown();
+ },
+ deleteComment (event) {
 
+ }
 });
 
 function mapDispatchToProps (dispatch, props) {
-  return {
-    upvoteComment: () => {
-      dispatch(actions.upvoteComment(props.id));
-    },
-    downvoteComment: () => {
-      dispatch(actions.downvoteComment(props.id));
-    }
-  };
+ return {
+   upvoteComment: () => {
+     dispatch(actions.upvoteComment(props.id));
+   },
+   downvoteComment: () => {
+     dispatch(actions.downvoteComment(props.id));
+   },
+   commentVoteUp: () => {
+     dispatch(actions.commentVote(props.id, 'up'));
+   },
+   commentVoteDown: () => {
+     dispatch(actions.commentVote(props.id, 'down'));
+   }
+ };
 }
 
 export default connect(null, mapDispatchToProps)(CommentCard);
