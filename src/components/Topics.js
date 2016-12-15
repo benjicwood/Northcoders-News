@@ -24,7 +24,7 @@ const Topics = React.createClass({
 });
 function mapStateToProps (state, props) {
   const topic = props.params.topic;
-  var filteredArticles = state.articles.filter((article) => {
+  var filteredArticles = state.articles.articles.filter((article) => {
     return article.belongs_to === topic;
   });
   return {

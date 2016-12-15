@@ -49,12 +49,12 @@ function mapStateToProps (state, props) {
   if (!state.comments.length === 0) return {};
 
   var id = props.params.id;
-  var filtered = state.articles.filter(function (article) {
+  var filtered = state.articles.articles.filter(function (article) {
     return article._id === id;
   })[0];
   return {
     currentArticle: filtered,
-    comments: state.comments
+    comments: state.articles.articles
   };
 }
 

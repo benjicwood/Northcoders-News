@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import reducer from '../src/reducer/reducer';
+import reducer from '../src/reducers/reducer';
 import * as actions from '../src/actions/actions';
 
 describe('reducer function', function () {

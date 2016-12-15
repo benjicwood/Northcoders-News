@@ -26,9 +26,9 @@ const ArticleList = React.createClass({
 });
 
 function mapStateToProps (state) {
-  if(!state || !state.articles) return {};
+  if(!state || !state.articles.articles) return {};
   return {
-    articles: state.articles
+    articles: state.articles.articles
   };
 }
 

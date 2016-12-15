@@ -31,9 +31,9 @@ const NavBar = React.createClass({
   }
 });
 function mapStateToProps (state) {
-  if(!state || !state.topics) return {};
+  if(!state || !state.topics.topics) return {};
   return {
-    topics: state.topics
+    topics: state.topics.topics
   };
 }
 

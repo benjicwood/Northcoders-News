@@ -8,7 +8,7 @@ import createLogger from 'redux-logger';
 
 import App from './components/App';
 import ArticleList from './components/ArticleList';
-import reducer from './reducer/reducer';
+import reducer from './reducers/reducer';
 import Topics from './components/Topics';
 import Article from './components/Article';
 const store = createStore(reducer, applyMiddleware(thunk, createLogger()));
@@ -20,6 +20,5 @@ ReactDOM.render(<Provider store={store}>
                       <Route path='/:topic' component={Topics} />
                       <Route path='/articles/:id' component={Article} />
                     </Route>
-
                   </Router>
                 </Provider>, document.getElementById('app'));
