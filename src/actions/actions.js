@@ -54,7 +54,7 @@ export function fetchComments (id) {
    request
    .get(`${ROOT}/articles/${id}`)
    .end((err, res) => {
-     console.log('rsponse');
+     console.log('response');
      console.log(res.body);
      if (err) dispatch(commentsError(err));
      else dispatch(commentsSuccess(res.body));
@@ -195,3 +195,57 @@ export function commentUpdateError (error) {
    error: error
  };
 }
+
+
+export function postCommentError (error) {
+  return {
+    type: types.POST_COMMENT_ERROR,
+    error: error
+  };
+}
+
+export function postComment (article_id, comment) {
+ const token = localStorage.getItem('token');
+  return (dispatch) => {
+    request
+    .post(`${ROOT}/articles/${article_id}/comments`)
+    .set('authorization', token)
+    .send(comment)
+    .end(function (err, res) {
+      if (err) {
+        dispatch(postCommentError(err));
+      } else {
+        dispatch(addComment(res.body.comment));
+      }
+    });
+  };
+}
+
+
+
+export function deleteCommentError (error) {
+  return {
+    type: types.DELETE_COMMENT_ERROR,
+    error: error
+  };
+}
+
+export function deleteCommentRequest (comment_id) {
+  const token = localStorage.getItem('token');
+  return (dispatch) => {
+    request
+    .delete(`${ROOT}/api/comments/${comment_id}`)
+    .set('authorization', token)
+    .end(function (err, res) {
+      if (err) {
+        console.log(err);
+      } else {
+        dispatch(deleteComment(comment_id));
+      }
+    });
+  };
+}
+// VOTE CHANGE ACTIONS
+
+
+// PUT UPVOTE COMMENT ACTIONS
