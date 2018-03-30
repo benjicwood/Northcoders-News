@@ -11,9 +11,6 @@ const ArticleCard = React.createClass({
       <div className="box">
         <article className="media">
           <div className="media-left">
-            <figure className="image is-64x64">
-              <img src="http://img.photobucket.com/albums/v480/le_charlwood/code-outline.png" alt="Image" />
-            </figure>
           </div>
           <div className="media-content">
             <div className="content">
