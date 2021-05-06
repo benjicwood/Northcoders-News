@@ -40,6 +40,6 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
     "superagent": "^3.0.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.12.1"
   }
 }
